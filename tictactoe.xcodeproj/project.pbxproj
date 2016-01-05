@@ -12,6 +12,9 @@
 		915079591C35969C0024D0F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 915079571C35969C0024D0F1 /* Main.storyboard */; };
 		9150795B1C35969C0024D0F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9150795A1C35969C0024D0F1 /* Assets.xcassets */; };
 		9150795E1C35969C0024D0F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9150795C1C35969C0024D0F1 /* LaunchScreen.storyboard */; };
+		915079681C35C0470024D0F1 /* tic-tac-toe.gif in Resources */ = {isa = PBXBuildFile; fileRef = 915079671C35C0470024D0F1 /* tic-tac-toe.gif */; };
+		9150796A1C35C1660024D0F1 /* o.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 915079691C35C1660024D0F1 /* o.jpg */; };
+		9150796C1C35C16A0024D0F1 /* x.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9150796B1C35C16A0024D0F1 /* x.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		9150795A1C35969C0024D0F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9150795D1C35969C0024D0F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9150795F1C35969C0024D0F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		915079671C35C0470024D0F1 /* tic-tac-toe.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "tic-tac-toe.gif"; sourceTree = "<group>"; };
+		915079691C35C1660024D0F1 /* o.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = o.jpg; sourceTree = "<group>"; };
+		9150796B1C35C16A0024D0F1 /* x.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = x.jpeg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +63,9 @@
 				915079531C35969C0024D0F1 /* AppDelegate.swift */,
 				915079551C35969C0024D0F1 /* ViewController.swift */,
 				915079571C35969C0024D0F1 /* Main.storyboard */,
+				915079671C35C0470024D0F1 /* tic-tac-toe.gif */,
+				9150796B1C35C16A0024D0F1 /* x.jpeg */,
+				915079691C35C1660024D0F1 /* o.jpg */,
 				9150795A1C35969C0024D0F1 /* Assets.xcassets */,
 				9150795C1C35969C0024D0F1 /* LaunchScreen.storyboard */,
 				9150795F1C35969C0024D0F1 /* Info.plist */,
@@ -123,7 +132,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9150796C1C35C16A0024D0F1 /* x.jpeg in Resources */,
+				9150796A1C35C1660024D0F1 /* o.jpg in Resources */,
 				9150795E1C35969C0024D0F1 /* LaunchScreen.storyboard in Resources */,
+				915079681C35C0470024D0F1 /* tic-tac-toe.gif in Resources */,
 				9150795B1C35969C0024D0F1 /* Assets.xcassets in Resources */,
 				915079591C35969C0024D0F1 /* Main.storyboard in Resources */,
 			);
