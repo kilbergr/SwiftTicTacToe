@@ -37,11 +37,12 @@ class ViewController: UIViewController {
         newGameButton.setTitle(" ", forState: UIControlState.Normal)
         
         var buttonToClear : UIButton
-        for var i = 0; i < 9; i++ {
+        for i in 0...8 {
             buttonToClear = view.viewWithTag(i) as! UIButton
             buttonToClear.setImage(nil, forState: .Normal)
             
         }
+
         
     }
     
@@ -57,7 +58,7 @@ class ViewController: UIViewController {
                     //keep track of state of each square
                     gameStateArr[sender.tag] = 1
                     
-                    xOdd = 2
+                    xOdd = 2    
                     xoCount++
                 }
                     
