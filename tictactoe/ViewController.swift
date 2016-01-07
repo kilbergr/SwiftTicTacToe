@@ -10,17 +10,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var oddEven = 1
-    var numOfX = 0
-    var numOfO = 0
-    
-    func resetGame() {
-         oddEven = 1
-         numOfX = 0
-         numOfO = 0
-         gameStateArr = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-    }
-    
     var gameStateArr = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     var winningCombos = [[0, 1, 2], [0, 3, 6], [0, 4, 8], [3, 4, 5], [6, 7, 8], [2, 4, 6], [1, 4, 7], [2, 5, 8]]
     
@@ -31,16 +20,26 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var onWin: UILabel!
     
+    //if xOdd is one, it's for Xs, if 2, it's for Os
+    var xOdd = 1
+    
+    
+    func resetGame() {
+        xOdd = 1
+        gameStateArr = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        onWin.hidden = true
+    }
+    
     @IBAction func newGameButtonClicked(sender: AnyObject) {
         resetGame()
         newGameButton.setTitle(" ", forState: UIControlState.Normal)
-//            for view in self.view.subviews as [UIView] {
-//                if let btn = view as? UIButton {
-//                    //Removing images
-//                    
-//                    btn.setImage(UIImage(named: "blue.jpg"), forState: .Normal)
-//                }
-//            }
+        
+        var buttonToClear : UIButton
+        for var i = 0; i < 9; i++ {
+            buttonToClear = view.viewWithTag(i) as! UIButton
+            buttonToClear.setImage(nil, forState: .Normal)
+            
+        }
         
     }
     
@@ -49,14 +48,14 @@ class ViewController: UIViewController {
         
         if gameStateArr[sender.tag] == 0 {
             
-            if oddEven % 2 != 0 {
+            if xOdd == 1 {
                 
                 sender.setImage(UIImage(named: "x.jpeg"), forState: .Normal)
                 
                 //keep track of state of each square
                 gameStateArr[sender.tag] = 1
                 
-                numOfX++
+                xOdd = 2
                 
             }
                 
@@ -67,43 +66,54 @@ class ViewController: UIViewController {
                 //keep track of state of each square
                 gameStateArr[sender.tag] = 2
                 
-                numOfO++
+                xOdd = 1
 
             }
             
-            oddEven++
-            
             //to check for winning combinations
-            if (oddEven >= 3) {
-                
-                for combo in winningCombos {
-                
-                    if gameStateArr[combo[0]] != 0 && gameStateArr[combo[0]] == gameStateArr[combo[1]] && gameStateArr[combo[1]] == gameStateArr[combo[2]] {
-                       
-                        //determine which player won
-                        if (oddEven % 2 == 0) {
-                            onWin.text = "X Wins!"
-                        }
-                        
-                        else {
-                            onWin.text = "O Wins!"
-                        }
+            for combo in winningCombos {
+            
+                if gameStateArr[combo[0]] != 0 && gameStateArr[combo[0]] == gameStateArr[combo[1]] && gameStateArr[combo[1]] == gameStateArr[combo[2]] {
+                   
+                    //determine which player won
+                    if (xOdd % 2 == 0) {
+                        onWin.text = "X Wins!"
+                        offerNew()
+                    }
+                    
+                    else {
+                        onWin.text = "O Wins!"
+                        offerNew()
                     }
                 }
             }
         }
-        
-        //checking to see if board is full
-        if numOfO + numOfX == 9 {
-            newGameButton.setTitle("New Game!", forState: UIControlState.Normal)
-        }
-    
     }
+    
+    func offerNew() {
+        
+        //show and animate label
+        onWin.hidden = false
+        
+        UIView.animateWithDuration(0.7, animations: { () -> Void in
+            
+            self.onWin.center = CGPointMake(self.onWin.center.x + 400, self.onWin.center.y)
+        })
+        
+        newGameButton.setTitle("New Game!", forState: UIControlState.Normal)
+        
+        
+        UIView.animateWithDuration(0.7, animations: { () -> Void in
+            
+            self.newGameButton.center = CGPointMake(self.newGameButton.center.x + 400, self.newGameButton.center.y)
+        })
 
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        onWin.hidden = true
     }
 
     override func didReceiveMemoryWarning() {
