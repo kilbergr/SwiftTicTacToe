@@ -22,12 +22,14 @@ class ViewController: UIViewController {
     
     //if xOdd is one, it's for Xs, if 2, it's for Os
     var xOdd = 1
+    var xoCount = 0
     
     
     func resetGame() {
         xOdd = 1
         gameStateArr = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         onWin.hidden = true
+        xoCount = 0
     }
     
     @IBAction func newGameButtonClicked(sender: AnyObject) {
@@ -45,67 +47,78 @@ class ViewController: UIViewController {
     
     @IBAction func clickButton(sender: AnyObject) {
         //checking for states of 0, i.e. unclicked
-        
-        if gameStateArr[sender.tag] == 0 {
-            
-            if xOdd == 1 {
+       
+            if gameStateArr[sender.tag] == 0 {
                 
-                sender.setImage(UIImage(named: "x.jpeg"), forState: .Normal)
-                
-                //keep track of state of each square
-                gameStateArr[sender.tag] = 1
-                
-                xOdd = 2
-                
-            }
-                
-            else {
-                
-                sender.setImage(UIImage(named: "o.jpg"), forState: .Normal)
-                
-                //keep track of state of each square
-                gameStateArr[sender.tag] = 2
-                
-                xOdd = 1
-
-            }
-            
-            //to check for winning combinations
-            for combo in winningCombos {
-            
-                if gameStateArr[combo[0]] != 0 && gameStateArr[combo[0]] == gameStateArr[combo[1]] && gameStateArr[combo[1]] == gameStateArr[combo[2]] {
-                   
-                    //determine which player won
-                    if (xOdd % 2 == 0) {
-                        onWin.text = "X Wins!"
-                        offerNew()
-                    }
+                if xOdd == 1 {
                     
-                    else {
-                        onWin.text = "O Wins!"
-                        offerNew()
+                    sender.setImage(UIImage(named: "x.jpeg"), forState: .Normal)
+                    
+                    //keep track of state of each square
+                    gameStateArr[sender.tag] = 1
+                    
+                    xOdd = 2
+                    xoCount++
+                }
+                    
+                else {
+                    
+                    sender.setImage(UIImage(named: "o.jpg"), forState: .Normal)
+                    
+                    //keep track of state of each square
+                    gameStateArr[sender.tag] = 2
+                    
+                    xOdd = 1
+                    xoCount++
+
+                }
+                if xoCount == 9 {
+                    onWin.text = "It's a Draw!"
+                    offerNew()
+                    showWinner()
+                    
+                }
+                
+                //to check for winning combinations
+                for combo in winningCombos {
+                
+                    if gameStateArr[combo[0]] != 0 && gameStateArr[combo[0]] == gameStateArr[combo[1]] && gameStateArr[combo[1]] == gameStateArr[combo[2]] {
+                       
+                        //determine which player won
+                        if (xOdd % 2 == 0) {
+                            onWin.text = "X Wins!"
+                            showWinner()
+                            offerNew()
+                        }
+                        
+                        else {
+                            onWin.text = "O Wins!"
+                            showWinner()
+                            offerNew()
+                        }
                     }
                 }
-            }
         }
     }
     
     func offerNew() {
+        //show and animate new game option
+        newGameButton.setTitle("New Game!", forState: UIControlState.Normal)
         
+        UIView.animateWithDuration(0.7, animations: { () -> Void in
+            
+            self.newGameButton.center = CGPointMake(self.newGameButton.center.x + 400, self.newGameButton.center.y)
+        })
+
+    }
+    
+    func showWinner() {
         //show and animate label
         onWin.hidden = false
         
         UIView.animateWithDuration(0.7, animations: { () -> Void in
             
             self.onWin.center = CGPointMake(self.onWin.center.x + 400, self.onWin.center.y)
-        })
-        
-        newGameButton.setTitle("New Game!", forState: UIControlState.Normal)
-        
-        
-        UIView.animateWithDuration(0.7, animations: { () -> Void in
-            
-            self.newGameButton.center = CGPointMake(self.newGameButton.center.x + 400, self.newGameButton.center.y)
         })
 
     }
